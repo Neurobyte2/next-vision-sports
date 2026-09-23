@@ -3,12 +3,21 @@ import { Phone, MessageSquare } from "lucide-react";
 
 export default function Navbar() {
   const whatsappUrl = "https://wa.me/923111879802?text=Hello,%20I%20am%20interested%20in%20your%20sportswear%20products.%20Please%20provide%20more%20information.";
+  const googleMapsUrl = "https://goo.gl/maps/wNxw5LZ5YNy5KSJf7?g_st=aw";
 
   return (
     <header className="sticky top-0 z-50 bg-[#090A0F]/95 backdrop-blur-md border-b border-gray-800 text-white">
-      {/* Top Bar for Direct Contact Info */}
+      {/* Top Bar for Direct Contact Info & Clickable Location */}
       <div className="bg-emerald-600 text-xs py-1.5 px-4 text-center font-medium flex justify-center items-center gap-6">
-        <span className="hidden sm:inline">📍 Sialkot, Pakistan</span>
+        <a
+          href={googleMapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline flex items-center gap-1 cursor-pointer font-semibold"
+          title="Click to open headquarters on Google Maps"
+        >
+          📍 Sialkot, Pakistan (Map)
+        </a>
         <a href="tel:+923111879802" className="hover:underline flex items-center gap-1">
           <Phone className="w-3.5 h-3.5" /> 03111-879802
         </a>
@@ -19,10 +28,11 @@ export default function Navbar() {
 
       {/* Main Navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
         {/* Brand Logo */}
         <Link href="/" className="flex flex-col">
           <span className="text-xl sm:text-2xl font-black tracking-wider uppercase text-white">
-            Next Vision <span className="text-emerald-500">Sports</span>
+            NexVion <span className="text-emerald-500">Sportswear</span>
           </span>
           <span className="text-[10px] text-gray-400 tracking-widest uppercase">Professional Sportswear Manufacturer</span>
         </Link>
@@ -31,7 +41,7 @@ export default function Navbar() {
         <nav className="hidden lg:flex items-center gap-8 font-medium text-sm text-gray-300">
           <Link href="/" className="hover:text-emerald-400 transition-colors">Home</Link>
           <Link href="/catalog" className="hover:text-emerald-400 transition-colors">Catalog</Link>
-          <Link href="/catalog" className="hover:text-emerald-400 transition-colors">Custom Sportswear</Link>
+          <Link href="/custom-sportswear" className="hover:text-emerald-400 transition-colors">Custom Sportswear</Link>
           <Link href="/about" className="hover:text-emerald-400 transition-colors">About</Link>
           <Link href="/contact" className="hover:text-emerald-400 transition-colors">Contact</Link>
         </nav>
@@ -48,7 +58,7 @@ export default function Navbar() {
             WhatsApp
           </a>
           <a
-            href="https://www.instagram.com/nexvion_sports?stkn=YmQyNHFkcXh5MG5m"
+            href="https://www.instagram.com/nexvion_sports/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -59,6 +69,7 @@ export default function Navbar() {
             </svg>
           </a>
         </div>
+
       </div>
     </header>
   );

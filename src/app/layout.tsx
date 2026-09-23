@@ -7,9 +7,9 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Next Vision Sports | Professional Sportswear Manufacturer in Sialkot, Pakistan",
-  description: "Engineering performance and crafting custom athletic excellence. Browse our professional sportswear catalog and connect directly for custom team orders.",
-  keywords: ["sportswear manufacturer", "custom jerseys", "soccer wear", "Sialkot sports factory", "Next Vision Sports"],
+  title: "NexVion Sportswear | Professional Sportswear Manufacturer in Sialkot, Pakistan",
+  description: "Engineering performance and crafting custom athletic excellence. Browse our professional sportswear catalog at nexvionsportswear.com and connect directly for custom team orders.",
+  keywords: ["sportswear manufacturer", "custom jerseys", "soccer wear", "Sialkot sports factory", "NexVion Sportswear"],
 };
 
 export default function RootLayout({

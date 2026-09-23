@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { ShieldCheck, Globe, Zap, MessageSquare, MapPin } from "lucide-react";
+import { ShieldCheck, Globe, Zap, MessageSquare, MapPin, ExternalLink } from "lucide-react";
 
 export default function AboutPage() {
-  const whatsappUrl = "https://wa.me/923111879802?text=Hello,%20I%20would%20like%20to%20know%20more%20about%20Next%20Vision%20Sports%20manufacturing%20capabilities.";
+  const whatsappUrl = "https://wa.me/923111879802?text=Hello,%20I%20would%20like%20to%20know%20more%20about%20NexVion%20Sportswear%20manufacturing%20capabilities.";
+  const googleMapsUrl = "https://goo.gl/maps/wNxw5LZ5YNy5KSJf7?g_st=aw";
 
   return (
     <div className="min-h-screen bg-[#090A0F] text-white py-20">
@@ -12,10 +13,10 @@ export default function AboutPage() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-emerald-400 text-xs font-semibold tracking-widest uppercase block mb-2">Company Overview</span>
           <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-6">
-            About Next Vision Sports
+            About NexVion Sportswear
           </h1>
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-            Based in <strong className="text-white">Sialkot, Pakistan</strong>, Next Vision Sports is a dedicated professional sportswear manufacturer and supplier, partnering with global teams, clubs, and brands.
+            Based in <strong className="text-white">Sialkot, Pakistan</strong>, NexVion Sportswear is a dedicated professional sportswear manufacturer and supplier, partnering with global teams, clubs, and brands under <span className="text-emerald-400 font-medium">nexvionsportswear.com</span>.
           </p>
         </div>
 
@@ -60,9 +61,22 @@ export default function AboutPage() {
           <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight mb-4 text-white">
             Ready to Discuss Your Team Order?
           </h2>
-          <p className="text-gray-300 text-sm max-w-xl mx-auto mb-8">
-            Connect directly with our manufacturing team via WhatsApp or email to share your design requirements and get prompt assistance.
+          <p className="text-gray-300 text-sm max-w-xl mx-auto mb-6">
+            Connect directly with our manufacturing facility in Sialkot or message us via WhatsApp to share your design requirements and get prompt assistance.
           </p>
+          
+          {/* Interactive Maps Link Button */}
+          <div className="mb-8">
+            <a
+              href={googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-xs font-semibold bg-emerald-950/60 border border-emerald-500/40 px-4 py-2 rounded-full transition-all"
+            >
+              <span>View Headquarters on Google Maps</span> <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href={whatsappUrl}

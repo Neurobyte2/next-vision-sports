@@ -14,7 +14,7 @@ export default function CatalogPage() {
 
   const scrollCategories = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
-      const scrollAmount = 300;
+      const scrollAmount = scrollContainerRef.current.clientWidth * 0.75;
       scrollContainerRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -65,21 +65,25 @@ export default function CatalogPage() {
             />
           </div>
 
-          {/* CATEGORY SCROLLER WITH DESKTOP ARROWS */}
+          {/* ADVANCED CATEGORY SCROLLER WITH ARROWS & FADE HINTS */}
           <div className="relative flex items-center group">
-            {/* Left Scroll Button (Desktop) */}
+            
+            {/* Left Scroll Arrow (Desktop) */}
             <button
               onClick={() => scrollCategories("left")}
-              className="hidden md:flex absolute -left-3 z-10 bg-[#12141C]/90 hover:bg-emerald-600 text-white p-2 rounded-full border border-gray-700 shadow-xl transition-all cursor-pointer items-center justify-center backdrop-blur-sm"
+              className="hidden md:flex absolute -left-3 z-20 bg-[#12141C]/95 hover:bg-emerald-600 text-white p-2.5 rounded-full border border-gray-700 shadow-2xl transition-all cursor-pointer items-center justify-center backdrop-blur-md active:scale-95"
               aria-label="Scroll left"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
 
+            {/* Left Fade Shadow Gradient Hint */}
+            <div className="absolute left-0 top-0 bottom-2 w-8 bg-gradient-to-r from-[#090A0F] to-transparent pointer-events-none z-10 hidden md:block" />
+
             {/* Scrollable Category Container */}
             <div
               ref={scrollContainerRef}
-              className="flex items-center gap-2 overflow-x-auto pb-2 pt-1 touch-pan-x [-webkit-overflow-scrolling:touch] scrollbar-none w-full px-1 scroll-smooth"
+              className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-1 touch-pan-x [-webkit-overflow-scrolling:touch] scrollbar-none w-full px-2 scroll-smooth"
             >
               <button
                 onClick={() => {
@@ -112,10 +116,13 @@ export default function CatalogPage() {
               ))}
             </div>
 
-            {/* Right Scroll Button (Desktop) */}
+            {/* Right Fade Shadow Gradient Hint */}
+            <div className="absolute right-0 top-0 bottom-2 w-8 bg-gradient-to-l from-[#090A0F] to-transparent pointer-events-none z-10 hidden md:block" />
+
+            {/* Right Scroll Arrow (Desktop) */}
             <button
               onClick={() => scrollCategories("right")}
-              className="hidden md:flex absolute -right-3 z-10 bg-[#12141C]/90 hover:bg-emerald-600 text-white p-2 rounded-full border border-gray-700 shadow-xl transition-all cursor-pointer items-center justify-center backdrop-blur-sm"
+              className="hidden md:flex absolute -right-3 z-20 bg-[#12141C]/95 hover:bg-emerald-600 text-white p-2.5 rounded-full border border-gray-700 shadow-2xl transition-all cursor-pointer items-center justify-center backdrop-blur-md active:scale-95"
               aria-label="Scroll right"
             >
               <ChevronRight className="w-4 h-4" />

@@ -1,14 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { categories, otherServices, products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
-import { Search, Filter, MessageSquare, ChevronDown, CheckCircle2 } from "lucide-react";
+import { Search, Filter, MessageSquare, ChevronDown, CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function CatalogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scrollCategories = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 300;
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   const filteredProducts = products.filter((p) => {
     const matchesCategory = selectedCategory === "All" || p.category === selectedCategory;
@@ -40,7 +52,7 @@ export default function CatalogPage() {
           </p>
         </div>
 
-        {/* SEARCH & FILTER BAR (Responsive: Wrap on Laptop, Touch Scroll on Mobile) */}
+        {/* SEARCH & STICKY FILTER BAR */}
         <div className="sticky top-16 z-30 bg-[#090A0F]/95 backdrop-blur-md py-3 mb-6 space-y-3">
           <div className="relative w-full">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -53,38 +65,61 @@ export default function CatalogPage() {
             />
           </div>
 
-          {/* CATEGORY FILTER BUTTONS */}
-          {/* Mobile: Horizontal scrollable strip | Desktop & Laptop: Clean wrapping grid */}
-          <div className="flex sm:flex-wrap items-center gap-2 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0 pt-1 touch-pan-x [-webkit-overflow-scrolling:touch] scrollbar-none justify-start sm:justify-center">
+          {/* CATEGORY SCROLLER WITH DESKTOP ARROWS */}
+          <div className="relative flex items-center group">
+            {/* Left Scroll Button (Desktop) */}
             <button
-              onClick={() => {
-                setSelectedCategory("All");
-                setSelectedSubCategory("All");
-              }}
-              className={`px-4 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer active:scale-95 shrink-0 ${
-                selectedCategory === "All"
-                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-900/40"
-                  : "bg-[#12141C] text-gray-300 border border-gray-800 hover:border-gray-600"
-              }`}
+              onClick={() => scrollCategories("left")}
+              className="hidden md:flex absolute -left-3 z-10 bg-[#12141C]/90 hover:bg-emerald-600 text-white p-2 rounded-full border border-gray-700 shadow-xl transition-all cursor-pointer items-center justify-center backdrop-blur-sm"
+              aria-label="Scroll left"
             >
-              All Active Categories
+              <ChevronLeft className="w-4 h-4" />
             </button>
-            {categories.map((cat, idx) => (
+
+            {/* Scrollable Category Container */}
+            <div
+              ref={scrollContainerRef}
+              className="flex items-center gap-2 overflow-x-auto pb-2 pt-1 touch-pan-x [-webkit-overflow-scrolling:touch] scrollbar-none w-full px-1 scroll-smooth"
+            >
               <button
-                key={idx}
                 onClick={() => {
-                  setSelectedCategory(cat);
+                  setSelectedCategory("All");
                   setSelectedSubCategory("All");
                 }}
                 className={`px-4 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer active:scale-95 shrink-0 ${
-                  selectedCategory === cat
+                  selectedCategory === "All"
                     ? "bg-emerald-600 text-white shadow-md shadow-emerald-900/40"
                     : "bg-[#12141C] text-gray-300 border border-gray-800 hover:border-gray-600"
                 }`}
               >
-                {cat}
+                All Active Categories
               </button>
-            ))}
+              {categories.map((cat, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setSelectedCategory(cat);
+                    setSelectedSubCategory("All");
+                  }}
+                  className={`px-4 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer active:scale-95 shrink-0 ${
+                    selectedCategory === cat
+                      ? "bg-emerald-600 text-white shadow-md shadow-emerald-900/40"
+                      : "bg-[#12141C] text-gray-300 border border-gray-800 hover:border-gray-600"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Right Scroll Button (Desktop) */}
+            <button
+              onClick={() => scrollCategories("right")}
+              className="hidden md:flex absolute -right-3 z-10 bg-[#12141C]/90 hover:bg-emerald-600 text-white p-2 rounded-full border border-gray-700 shadow-xl transition-all cursor-pointer items-center justify-center backdrop-blur-sm"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
 

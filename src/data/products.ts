@@ -1,6 +1,6 @@
 import { Product } from "@/types";
 
-// Active categories that have real image folders and products
+// Active categories that have real image folders and products (Updated with your 5 new categories)
 export const categories = [
   "Football / Soccer Wear",
   "Basketball Wear",
@@ -22,6 +22,11 @@ export const categories = [
   "Outerwear & Jackets",
   "Boxing & Combat Wear",
   "Tennis Wear",
+  "Slippers & Footwear",
+  "Boxing Shorts",
+  "Volleyball Wear",
+  "Rugby Wear",
+  "Cricket Wear",
   "Custom Showcase",
   "Custom Sportswear",
 ];
@@ -29,14 +34,10 @@ export const categories = [
 // Additional services offered on request
 export const otherServices = [
   "Ice Hockey Wear",
-  "Rugby Wear",
-  "Cricket Wear",
-  "Volleyball Wear",
   "Running & Athletics",
   "Gym & Fitness Wear",
   "Cycling Wear",
   "Tennis & Padel",
-  "Boxing & Combat Sports",
   "Outdoor / Performance Wear",
   "Team & Casual Sportswear",
   "Sports Accessories",
@@ -365,18 +366,18 @@ export const products: Product[] = [
     };
   }),
 
-  // --- CUSTOM DESIGN (Single picture named a.jpeg) ---
+  // --- CUSTOM DESIGN (Single picture) ---
   {
     id: `ns-custom-design-a`,
     name: `Custom Bespoke Design Concept (A)`,
     category: "Custom Showcase",
     subcategory: "Custom Design",
-    image: `/images/custom-design/a.jpeg`,
+    image: `/images/custom-design/WhatsApp%20Image%202026-09-23%20at%204.24.25%20PM.jpeg`,
     description: "Sample showcase of specialized custom sublimation and bespoke cut-and-sew engineering by NexVion Sportswear.",
     featured: true,
   },
 
-  // --- BOXING GLOVES (a.jpeg to o.jpeg -> 15 items) ---
+  // --- BOXING GLOVES (a.jpeg to o.jpeg) ---
   ...Array.from({ length: 15 }, (_, i) => {
     const letter = String.fromCharCode(97 + i);
     return {
@@ -398,8 +399,78 @@ export const products: Product[] = [
       name: `Pro Court Tennis & Padel Jersey (${letter.toUpperCase()})`,
       category: "Tennis Wear",
       subcategory: "Tennis Jerseys",
-      image: `/images/tensi-jerseys/${letter}.jpeg`, // Matches folder name `tensi-jerseys`
+      image: `/images/tensi-jerseys/${letter}.jpeg`,
       description: "Lightweight, breathable stretch-knit tennis and padel jersey designed for agile court movement.",
+      featured: false,
+    };
+  }),
+
+  // --- SLIPPERS (a.jpeg to j.jpeg) ---
+  ...Array.from({ length: 10 }, (_, i) => {
+    const letter = String.fromCharCode(97 + i);
+    return {
+      id: `ns-slippers-${letter}`,
+      name: `Athletic Comfort Slide Slippers (${letter.toUpperCase()})`,
+      category: "Slippers & Footwear",
+      subcategory: "Slippers",
+      image: `/images/slippers/${letter}.jpeg`,
+      description: "Cushioned, water-resistant athletic slide slippers designed for post-game relaxation and casual wear.",
+      featured: false,
+    };
+  }),
+
+  // --- BOXING SHORTS (a.jpeg to k.jpeg) ---
+  ...Array.from({ length: 11 }, (_, i) => {
+    const letter = String.fromCharCode(97 + i);
+    return {
+      id: `ns-boxing-shorts-${letter}`,
+      name: `Professional Satin Boxing Shorts (${letter.toUpperCase()})`,
+      category: "Boxing Shorts",
+      subcategory: "Boxing Shorts",
+      image: `/images/boxing-shorts/${letter}.jpeg`,
+      description: "Traditional wide-waistband lightweight satin boxing shorts engineered for unrestricted movement in the ring.",
+      featured: false,
+    };
+  }),
+
+  // --- VOLLEYBALL T-SHIRTS (a.jpeg to i.jpeg) ---
+  ...Array.from({ length: 9 }, (_, i) => {
+    const letter = String.fromCharCode(97 + i);
+    return {
+      id: `ns-volleyball-${letter}`,
+      name: `Pro Court Volleyball Jersey (${letter.toUpperCase()})`,
+      category: "Volleyball Wear",
+      subcategory: "Volleyball T-Shirts",
+      image: `/images/volleyball-t-shirts/${letter}.jpeg`,
+      description: "High-mobility, breathable stretch volleyball jersey designed for explosive jumping and spiking performance.",
+      featured: false,
+    };
+  }),
+
+  // --- RUGBY JERSEYS (a.jpeg to h.jpeg) ---
+  ...Array.from({ length: 8 }, (_, i) => {
+    const letter = String.fromCharCode(97 + i);
+    return {
+      id: `ns-rugby-${letter}`,
+      name: `Heavy-Duty Pro Rugby Jersey (${letter.toUpperCase()})`,
+      category: "Rugby Wear",
+      subcategory: "Rugby Jerseys",
+      image: `/images/rugby-jerseys/${letter}.jpeg`,
+      description: "Tear-resistant, reinforced heavy-duty rugby jersey designed to withstand intense physical contact and tackles.",
+      featured: false,
+    };
+  }),
+
+  // --- CRICKET UNIFORMS (a.jpeg to e.jpeg) ---
+  ...Array.from({ length: 5 }, (_, i) => {
+    const letter = String.fromCharCode(97 + i);
+    return {
+      id: `ns-cricket-${letter}`,
+      name: `Professional Cricket Team Uniform (${letter.toUpperCase()})`,
+      category: "Cricket Wear",
+      subcategory: "Cricket Uniforms",
+      image: `/images/cricket/${letter}.jpeg`,
+      description: "Breathable UV-protection cricket whites and colored kits engineered for multi-hour match comfort.",
       featured: false,
     };
   }),

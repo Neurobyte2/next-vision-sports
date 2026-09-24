@@ -40,7 +40,7 @@ export default function CatalogPage() {
           </p>
         </div>
 
-        {/* SEARCH & FILTER BAR (Mobile Optimized) */}
+        {/* SEARCH & FILTER BAR (Responsive: Wrap on Laptop, Touch Scroll on Mobile) */}
         <div className="sticky top-16 z-30 bg-[#090A0F]/95 backdrop-blur-md py-3 mb-6 space-y-3">
           <div className="relative w-full">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -53,8 +53,9 @@ export default function CatalogPage() {
             />
           </div>
 
-          {/* CATEGORY FILTER PILLS (Smooth Touch Scroll) */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 pt-1 touch-pan-x [-webkit-overflow-scrolling:touch] scrollbar-none">
+          {/* CATEGORY FILTER BUTTONS */}
+          {/* Mobile: Horizontal scrollable strip | Desktop & Laptop: Clean wrapping grid */}
+          <div className="flex sm:flex-wrap items-center gap-2 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0 pt-1 touch-pan-x [-webkit-overflow-scrolling:touch] scrollbar-none justify-start sm:justify-center">
             <button
               onClick={() => {
                 setSelectedCategory("All");
@@ -63,7 +64,7 @@ export default function CatalogPage() {
               className={`px-4 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer active:scale-95 shrink-0 ${
                 selectedCategory === "All"
                   ? "bg-emerald-600 text-white shadow-md shadow-emerald-900/40"
-                  : "bg-[#12141C] text-gray-300 border border-gray-800"
+                  : "bg-[#12141C] text-gray-300 border border-gray-800 hover:border-gray-600"
               }`}
             >
               All Active Categories
@@ -78,7 +79,7 @@ export default function CatalogPage() {
                 className={`px-4 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer active:scale-95 shrink-0 ${
                   selectedCategory === cat
                     ? "bg-emerald-600 text-white shadow-md shadow-emerald-900/40"
-                    : "bg-[#12141C] text-gray-300 border border-gray-800"
+                    : "bg-[#12141C] text-gray-300 border border-gray-800 hover:border-gray-600"
                 }`}
               >
                 {cat}
@@ -108,8 +109,9 @@ export default function CatalogPage() {
               >
                 <option value="All">All Football Items</option>
                 <option value="Soccer Jerseys">Soccer Jerseys (a to z)</option>
-                <option value="Full Kits">Full Kits / Uniforms (a to n)</option>
+                <option value="Full Kits">Full Kits / Uniforms (a to w)</option>
                 <option value="Football Jackets">Football Jackets (a to r)</option>
+                <option value="Football Tracksuits">Football Tracksuits (a to g)</option>
               </select>
               <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-400 pointer-events-none" />
             </div>

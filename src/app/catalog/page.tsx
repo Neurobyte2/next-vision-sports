@@ -52,16 +52,17 @@ export default function CatalogPage() {
           </p>
         </div>
 
-        {/* SEARCH & STICKY FILTER BAR */}
-        <div className="sticky top-16 z-30 bg-[#090A0F]/95 backdrop-blur-md py-3 mb-6 space-y-3">
+        {/* SEARCH & STICKY FILTER BAR (Mobile Touch-Optimized) */}
+        <div className="sticky top-14 sm:top-16 z-30 bg-[#090A0F]/95 backdrop-blur-md py-3 mb-6 space-y-3">
           <div className="relative w-full">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <input
               type="text"
+              inputMode="search"
               placeholder="Search designs or categories..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#12141C] border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition-colors shadow-lg"
+              className="w-full bg-[#12141C] border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition-colors shadow-lg touch-manipulation"
             />
           </div>
 
